@@ -1,0 +1,14 @@
+{ 
+    "mongo": {
+        "local": {
+            "host": "mongodb://localhost:27017",
+            "defaultDB": "Test",
+            "port": 2024
+        },
+        "production": {
+            "host": "",
+            "defaultDB": "",
+            "port": 1234
+        }
+    }
+}
