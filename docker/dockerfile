@@ -18,4 +18,5 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash && \
 #RUN npx jest sumas
 COPY --from=primerLinux /10A-UTT /10A-Repo
 RUN cd /10A-Repo && npm install
+RUN cd /10A-Repo && npx jest newStore
 CMD /bin/bash
