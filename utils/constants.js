@@ -4,6 +4,13 @@ const ENVIRONMENTS = {
     production: "production"
 };
 
+const URLS = {
+    dev: "http://localhost:2024",
+    local: "http://localhost:2024",
+    production: ""
+};
+
 module.exports = {
-    ENVIRONMENTS: ENVIRONMENTS
+    ENVIRONMENTS: ENVIRONMENTS,
+    URLS: URLS
 };

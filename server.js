@@ -1,24 +1,19 @@
 const constants = require('./utils/constants');
-const arguments = process.argv;
-let entorno = constants.ENVIRONMENTS.production;
-arguments.forEach(arg => {
-    let argumento = arg.toLowerCase();
-    if(argumento.startsWith("--entorno=")) {
-        let valor = argumento.replace("--entorno=", '');
-        entorno = constants.ENVIRONMENTS[valor] || 
-                  constants.ENVIRONMENTS.production;
-    }
-});
+const helpers = require('./utils/helpers');
+let entorno = helpers.processArguments();
 
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+app.use(express.json());
+app.use(express.static(__dirname + "/public"));
+
 const config = require('./config.json');
 
-app.post('/stores', async (req, res) => {
-    const body = req.body;
-    
-});
+const storesRouter = require('./routers/store');
+
+//http:localhost:2024/stores/new
+app.use('/stores', storesRouter);
 
 const PORT = config.mongo[entorno].port;
 app.listen(PORT, function(error) {

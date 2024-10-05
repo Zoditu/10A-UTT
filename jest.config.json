@@ -3,5 +3,6 @@
 	"default",
 	["./node_modules/jest-html-reporter", {
 		"pageTitle": "Reporte Pruebas Tienda"
-	}]]
+	}]],
+	"verbose": true
 }
