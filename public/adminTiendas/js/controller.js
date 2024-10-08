@@ -39,6 +39,23 @@ const app = Vue.createApp({
             let result = await axios.get('/stores/all');
             console.log(result);
             this.tiendas = result.data;
+        },
+        async borrarTienda(clave) {
+            try {
+                await axios.delete( `/stores/${clave}`, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                this.mensaje = "Se eliminó la tienda :D";
+                this.errorMensaje = false;
+            } catch(error) {
+                this.mensaje = "No se ha podido eliminar la tienda";
+                this.errorMensaje = true;
+            } finally {
+                this.mostrar = true;
+                await this.actualizarTiendas();
+            }
         }
     },
     mounted() {
