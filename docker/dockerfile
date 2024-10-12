@@ -9,6 +9,8 @@ FROM ubuntu:latest as base
 RUN apt-get -y update; apt-get -y install curl
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash && \
     apt-get -qqy install nodejs
+RUN npm install mocha -g
+RUN npm install mochawesome -g
 #COPY --from=primerLinux ejemplo.js .
 #RUN mkdir pruebas
 #COPY Mathematics.js /pruebas
@@ -16,7 +18,12 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash && \
 #RUN cd pruebas && npm init --yes
 #RUN cd pruebas && npm install jest@latest
 #RUN npx jest sumas
+RUN apt-get update && apt-get install -y gnupg2
+RUN apt-get install -y wget
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+RUN apt-get update && apt-get -y install google-chrome-stable
 COPY --from=primerLinux /10A-UTT /10A-Repo
 RUN cd /10A-Repo && npm install
-RUN cd /10A-Repo && npx jest newStore
+RUN cd /10A-Repo && mocha --timeout 30000 --reporter mochawesome ./tests/store/newStore.ui.test.js
 CMD /bin/bash

@@ -4,5 +4,6 @@
 	["./node_modules/jest-html-reporter", {
 		"pageTitle": "Reporte Pruebas Tienda"
 	}]],
-	"verbose": true
+	"verbose": true,
+	"testTimeout": 30000
 }

@@ -29,5 +29,6 @@ app.listen(PORT, function(error) {
         console.log(`Conectado al mongo: ${mongoURI}`);
     }).catch((error) => {
         console.error(error);
+        process.exit(0);
     });
 });

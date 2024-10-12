@@ -10,12 +10,25 @@ const app = Vue.createApp({
         },
         mensaje: "",
         mostrar: false,
-        errorMensaje: false
+        errorMensaje: false,
+        loader: true
       }
     },
     methods: {
+        async sleep(time) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                    resolve(true)
+                }, time);
+            });
+        },
+        async ocultarLoader() {
+            await this.sleep(1000);
+            this.loader = false;
+        },
         async crearTienda($event) {
             $event.preventDefault();
+            this.loader = true;
             
             //Request
             const tienda = Object.assign({}, this.nuevaTienda);
@@ -36,11 +49,13 @@ const app = Vue.createApp({
             }
         },
         async actualizarTiendas() {
+            this.loader = true;
             let result = await axios.get('/stores/all');
-            console.log(result);
             this.tiendas = result.data;
+            await this.ocultarLoader();
         },
         async borrarTienda(clave) {
+            this.loader = true;
             try {
                 await axios.delete( `/stores/${clave}`, {
                     headers: {

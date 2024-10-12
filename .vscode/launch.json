@@ -22,7 +22,7 @@
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npx",
-            "args": ["jest", "newStore.api"]
+            "args": ["jest", "newStore.ui"]
         }
     ]
 }
