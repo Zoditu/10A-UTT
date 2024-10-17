@@ -34,11 +34,11 @@ async function createDriver(isChrome) {
     
     if(isChrome) {
         driver = await new Builder().forBrowser(Browser.CHROME)
-            .setChromeOptions(new chrome.Options().addArguments('--headless=new', '--headless', '--no-sandbox'))
+            .setChromeOptions(new chrome.Options().addArguments('--headless=new', '--headless', '--no-sandbox', '--window-size=1920x1080'))
             .build();
     } else {
         driver = await new Builder().forBrowser(Browser.EDGE)
-            .setEdgeOptions(new edge.Options().addArguments('--headless=new', '--headless', '--no-sandbox'))
+            .setEdgeOptions(new edge.Options().addArguments('--headless=new', '--headless', '--no-sandbox', '--window-size=1920x1080'))
             .build();
     }
     await driver.get("http://localhost:2024/adminTiendas");
