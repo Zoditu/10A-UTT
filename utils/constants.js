@@ -7,7 +7,7 @@ const ENVIRONMENTS = {
 const URLS = {
     dev: "http://localhost:2024",
     local: "http://localhost:2024",
-    production: ""
+    production: "http://localhost:2024"
 };
 
 module.exports = {

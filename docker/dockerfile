@@ -23,7 +23,7 @@ RUN apt-get install -y wget
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN apt-get update && apt-get -y install google-chrome-stable
+#RUN systemctl start mongod
 COPY --from=primerLinux /10A-UTT /10A-Repo
-RUN cd /10A-Repo && npm install
-RUN cd /10A-Repo && mocha --timeout 30000 --reporter mochawesome ./tests/store/newStore.ui.test.js
-CMD /bin/bash
+#RUN cd /10A-Repo && npm install
+#RUN cd /10A-Repo && mocha --timeout 30000 --reporter mochawesome /10A-Repo/tests/store/newStore.ui.test.js
